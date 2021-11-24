@@ -40,8 +40,8 @@ const resolvers = {
       return { token, user };
     },
     removeUser: async (parent, { userId }) => {
-      return User.findOneAndDelete({ _id: userId });
-    },
+      return await User.findOneAndDelete({ _id: userId });
+    }
   }
 };
 

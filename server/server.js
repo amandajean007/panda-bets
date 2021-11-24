@@ -26,17 +26,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/pandabets";
-// mongoose.connect(mongoUri, {
-//   useNewUrlParser: true,
-//   useFindAndModify: false,
-//   useUnifiedTopology: true
-// });
-
-// mongoose.connection.on('connected', () => {
-//   console.log('Mongoose is connected!!!!');
-// });
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
