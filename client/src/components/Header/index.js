@@ -15,7 +15,7 @@ const Header = () => {
           <Link className="text-light" to="/">
             <h1 className="m-0">Panda Bets</h1>
           </Link>
-          <p className="m-0">Place your bets!</p>
+          <p className="m-0">the home for betting knowledge</p>
         </div>
         <div>
           {Auth.loggedIn() ? (

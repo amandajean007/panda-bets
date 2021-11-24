@@ -16,16 +16,7 @@ const Footer = () => {
           </button>
         )}
         <h4>
-          Made with{' '}
-          <span
-            className="emoji"
-            role="img"
-            aria-label="heart"
-            aria-hidden="false"
-          >
-            ❤️
-          </span>{' '}
-          by Panda.
+          Made with ❤️ by Pandalion
         </h4>
       </div>
     </footer>

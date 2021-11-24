@@ -6,7 +6,7 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      thoughts {
+      bets {
         _id
         thoughtText
         createdAt
@@ -16,11 +16,11 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+  query getBets {
+    bets {
       _id
-      thoughtText
-      thoughtAuthor
+      betAmount
+      betAuthor
       createdAt
     }
   }

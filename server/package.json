@@ -6,7 +6,7 @@
     "scripts": {
       "start": "node server.js",
       "watch": "nodemon",
-      "seed": "node seeders/seed.js"
+      "seed": "node seeds/teams.json"
     },
     "keywords": [],
     "author": "",
@@ -17,7 +17,9 @@
       "express": "^4.17.1",
       "jsonwebtoken": "^8.5.1",
       "mongoose": "^5.9.9",
-      "graphql": "^15.5.1"
+      "graphql": "^15.5.1",
+      "morgan": "^1.9.1",
+      "webpack-pwa-manifest": "^4.3.0"
     },
     "devDependencies": {
       "nodemon": "^2.0.3"
