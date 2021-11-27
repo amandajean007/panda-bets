@@ -8,7 +8,8 @@ import Auth from '../utils/auth';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    username: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   });
@@ -25,7 +26,7 @@ const Signup = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+    console.log("form state: " + formState);
 
     try {
       const { data } = await addUser({
@@ -33,8 +34,10 @@ const Signup = () => {
       });
 
       Auth.login(data.addUser.token);
+      console.log("data.adduser.token: " + data.addUser.token);
     } catch (e) {
       console.error(e);
+      console.log("error");
     }
   };
 
@@ -53,8 +56,16 @@ const Signup = () => {
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
-                  placeholder="Your username"
-                  name="username"
+                  placeholder="Your first name"
+                  name="firstName"
+                  type="text"
+                  value={formState.name}
+                  onChange={handleChange}
+                />
+                                <input
+                  className="form-input"
+                  placeholder="Your last name"
+                  name="lastName"
                   type="text"
                   value={formState.name}
                   onChange={handleChange}
@@ -69,7 +80,7 @@ const Signup = () => {
                 />
                 <input
                   className="form-input"
-                  placeholder="******"
+                  placeholder="********"
                   name="password"
                   type="password"
                   value={formState.password}

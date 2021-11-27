@@ -20,7 +20,7 @@ const CommentForm = ({ thoughtId }) => {
         variables: {
           thoughtId,
           commentText,
-          commentAuthor: Auth.getProfile().data.username,
+          commentAuthor: Auth.getProfile().data.email,
         },
       });
 
@@ -44,7 +44,7 @@ const CommentForm = ({ thoughtId }) => {
       <h4>What are your thoughts on this thought?</h4>
 
       {Auth.loggedIn() ? (
-        <>
+        <div>
           <p
             className={`m-0 ${
               characterCount === 280 || error ? 'text-danger' : ''
@@ -74,7 +74,7 @@ const CommentForm = ({ thoughtId }) => {
               </button>
             </div>
           </form>
-        </>
+        </div>
       ) : (
         <p>
           You need to be logged in to share your thoughts. Please{' '}

@@ -1,10 +1,11 @@
-const withAuth = (req, res, next) => {
-  // If the user is not logged in, redirect the request to the login route
-  if (!req.session.logged_in) {
-    res.redirect('/login');
-  } else {
-    next();
-  }
-};
+const jwt = require('jsonwebtoken');
 
-module.exports = withAuth;
+const secret = 'mysecretssshhhhhhh';
+const expiration = '2h';
+
+module.exports = {
+  signToken: function ({ email, firstName, lastName, _id }) {
+    const payload = { email, firstName, lastName, _id };
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+  },
+};

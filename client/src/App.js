@@ -8,6 +8,9 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+// import { Button } from 'antd';
+// import './App.css';
+
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -60,10 +63,11 @@ function App() {
             <Route exact path="/Bet">
               <Bet />
             </Route>
-            <Route exact path="/profiles/:username">
+            <Route exact path="/profiles/:email">
               <Profile />
             </Route>
           </div>
+          {/* <Button type="primary">Button</Button> */}
           <Footer />
         </div>
       </Router>

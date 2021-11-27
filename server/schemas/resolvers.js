@@ -1,4 +1,6 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { User, Team, Player, Bet } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -17,8 +19,8 @@ const resolvers = {
   },
   
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { firstName, lastName, email, password }) => {
+      const user = await User.create({ firstName, lastName, email, password });
       const token = signToken(user);
 
       return { token, user };
@@ -27,13 +29,13 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Email or password incorrect, please try again. :)');
+        throw new AuthenticationError('Email or password incorrect, please try again.');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Email or password incorrect, please try again. :)');
+        throw new AuthenticationError('Email or password incorrect, please try again.');
       }
 
       const token = signToken(user);
@@ -41,7 +43,26 @@ const resolvers = {
     },
     removeUser: async (parent, { userId }) => {
       return await User.findOneAndDelete({ _id: userId });
-    }
+    },
+    addBet: async (parent, { profileId, bet }) => {
+      return Profile.findOneAndUpdate(
+        { _id: profileId },
+        {
+          $addToSet: { bets: bet },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+    removeBet: async (parent, { profileId, bet }) => {
+      return Profile.findOneAndUpdate(
+        { _id: profileId },
+        { $pull: { bets: bet } },
+        { new: true }
+      );
+    },
   }
 };
 
