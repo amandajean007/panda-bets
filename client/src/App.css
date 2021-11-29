@@ -3,3 +3,15 @@
     background-position: fixed;
     background-size: cover;
 }
+
+.green {
+    background-color: #2D6A4F;
+    margin: 10%;
+    padding: 10%;
+}
+
+.padding {
+    margin: 10%;
+    padding: 10%;
+    text-align: center;
+}
