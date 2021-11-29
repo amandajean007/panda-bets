@@ -1,0 +1,20 @@
+button {
+    color: #A1E887;
+    background-color: #1B4332;
+    padding: 10px;
+    text-align: center;
+}
+
+.body {
+    text-align: center;
+    background-color: #081C15;
+    margin: 10px;
+    padding: 10px;
+}
+
+form {
+    background-color: #40916C;
+    margin: 10px;
+    padding: 10px;
+}
+

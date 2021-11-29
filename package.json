@@ -8,7 +8,7 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build && webpack"
   },
   "keywords": [
     "sports",
@@ -21,7 +21,6 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "antd": "^4.17.1",
     "apollo-server-express": "^3.5.0",
     "compression": "^1.7.4",
     "graphql": "^15.7.2"

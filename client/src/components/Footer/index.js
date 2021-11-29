@@ -15,9 +15,7 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h4>
-          Made with ❤️ by Pandalion
-        </h4>
+
       </div>
     </footer>
   );

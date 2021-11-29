@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import '../../App.css';
+import 'antd/dist/antd.css';
+
 import Auth from '../../utils/auth';
 
 const Header = () => {
@@ -13,9 +16,10 @@ const Header = () => {
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
-            <h1 className="m-0">Panda Bets</h1>
+            <h1 className="m-0 pandabets text-light">Panda Bets...</h1>
           </Link>
-          <p className="m-0">the home for betting knowledge</p>
+          <p className="m-0">the home for better betting</p>
+          
         </div>
         <div>
           {Auth.loggedIn() ? (

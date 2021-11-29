@@ -1,22 +1,22 @@
-let APIKey = "c8c151ef5d554390b08b821e62264b1f"
+// let APIKey = "c8c151ef5d554390b08b821e62264b1f"
 
-function queryTodaysGames(){
-  let queryURL = "https://api.sportsdata.io/v3/nfl/scores/json/AreAnyGamesInProgress?key=" + APIKey;
-  fetch(queryURL)
-  .then(function (response) {
+// function queryTodaysGames(){
+//   let queryURL = "https://api.sportsdata.io/v3/nfl/scores/json/AreAnyGamesInProgress?key=" + APIKey;
+//   fetch(queryURL)
+//   .then(function (response) {
       
-    if(response.status !== 200){
-      } else {
-        return response.json();
-      }
+//     if(response.status !== 200){
+//       } else {
+//         return response.json();
+//       }
     
-  })
-  .then(function (data) {
-      console.log(data);
-  });
-}
+//   })
+//   .then(function (data) {
+//       console.log("Games in progress: " + data);
+//   });
+// }
 
-queryTodaysGames()
+// queryTodaysGames()
 
 
 // Where the info is going to be displayed
@@ -37,7 +37,7 @@ function getApi() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data)
+      console.log("Scores and Stats: " + data)
       //Loop over the data to generate a table, each table row will have a link to the repo url
       for (var i = 0; i < data.length; i++) {
         // Creating elements, tablerow, tabledata, and anchor
@@ -60,4 +60,5 @@ function getApi() {
 
 fetchButton.addEventListener('click', getApi);
 }
+
 export default Bet;
