@@ -2,6 +2,9 @@
   "name": "panda-bets",
   "version": "1.0.0",
   "description": "get data backed reccomendations on your sports bet",
+  "engines": {
+    "node": "16.6.2"
+  },
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",

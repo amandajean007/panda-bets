@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './style.css';
 
 import '../../App.css';
 import 'antd/dist/antd.css';
@@ -12,31 +13,60 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
+    <header className="text-light mb-4 py-3 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
             <h1 className="m-0 pandabets text-light">Panda Bets</h1>
           </Link>
           <p className="m-0">sports betting playground</p>
-          
         </div>
+
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/me">
+              <Link className="btn m-2" to="/me">
                 {Auth.getProfile().data.firstName}'s profile
               </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <button className="btn btn m-2" onClick={logout}>
                 Logout
               </button>
+              <Link className="btn m-2" to="/">
+                Home
+              </Link>
+              <Link className="btn m-2" to="/myfriends">
+                  Friends
+              </Link>
+              <Link className="btn m-2" to="/mybets">
+                  Bets
+              </Link>
+              <Link className="btn m-2" to="/mywallet">
+                  Wallet
+              </Link>
+              <Link className="btn m-2" to="/news">
+                  Sports News
+              </Link>
+              <Link className="btn m-2" to="/aboutBetting">
+                  About Betting in Colorado
+              </Link>
+              <Link className="btn m-2" to="/bettingSuggestions">
+                  Bet suggestions
+              </Link>
+              <Link className="btn m-2" to="/trendingBets">
+                  Trending
+              </Link>
+              <Link className="btn m-2" to="/golfPanda">
+                  Golf Panda - Golf bet tracker
+              </Link>
+
+
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
+              <Link className="btn  m-2" to="/login">
                 Login
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
+              <Link className="btn m-2" to="/signup">
                 Signup
               </Link>
             </>

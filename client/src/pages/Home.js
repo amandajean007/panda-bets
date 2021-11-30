@@ -51,9 +51,9 @@ async function newsByTeam() {
         return response.json();
       }
   })
-  .then(function (data) {
-      console.log("Odds by week: " + data);
-      return data
+  .then(function (response) {
+      console.log("News by Team: " + response);
+      return response
   });
 }
 
