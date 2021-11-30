@@ -920,7 +920,7 @@ a:hover {
 }
 
 .text-link {
-  color: #1b89bc !important;
+  color: #0c3500 !important;
 }
 
 /* BACKGROUND UTILS */
@@ -1080,17 +1080,12 @@ a:hover {
 }
 
 .btn.btn-link {
-  background-color: #1b89bc;
+  background-color: #095000;
   color: #ffffff;
 }
 
 .btn.btn-link:hover {
-  background-color: #31a9e1;
-}
-
-.card {
-  border: 1px solid #1a1a1a;
-  margin-bottom: 1rem;
+  background-color: #095000;
 }
 
 .card .card-header {

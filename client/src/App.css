@@ -11,7 +11,11 @@
 }
 
 .padding {
-    margin: 10%;
-    padding: 10%;
+    margin: 5%;
+    padding: 5%;
     text-align: center;
+}
+
+form {
+    width: 97%;
 }
