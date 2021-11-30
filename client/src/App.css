@@ -11,11 +11,23 @@
 }
 
 .padding {
-    margin: 5%;
-    padding: 5%;
+    margin: 5px;
+    padding: 5px;
     text-align: center;
 }
 
 form {
     width: 97%;
+}
+
+.center {
+    justify-content: center;
+}
+
+.navBarButton {
+    color: #74C69D;
+}
+
+a {
+    color: white;
 }

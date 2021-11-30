@@ -16,9 +16,9 @@ const Header = () => {
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
-            <h1 className="m-0 pandabets text-light">Panda Bets...</h1>
+            <h1 className="m-0 pandabets text-light">Panda Bets</h1>
           </Link>
-          <p className="m-0">the home for better betting</p>
+          <p className="m-0">sports betting playground</p>
           
         </div>
         <div>

@@ -7,71 +7,73 @@ function Nav() {
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul className="flex-row">
-          <ul className="mx-1">
-            <button>
-              <Link to="/myfriends">
-                My Friends
-              </Link>
-            </button>
+        <div className="center">
+          <ul className="flex-row center">
+            <ul className="mx-1">
+              <button className="btn btn-primary btn-block py-3">
+                <Link to="/myfriends">
+                  My Friends
+                </Link>
+              </button>
+            </ul>
+            <ul className="mx-1">
+              <button className="btn btn-primary btn-block py-3"> 
+                <Link to="/mybets">
+                  My Bets
+                </Link>
+              </button>
+            </ul>
+            <ul className="mx-1">
+              <button className="btn btn-primary btn-block py-3">
+                <Link to="/mywallet">
+                  My Wallet
+                </Link>
+              </button>
+            </ul>
+            <ul className="mx-1">
+              <button className="btn btn-primary btn-block py-3">
+                <Link to="/home">
+                  Homepage
+                </Link>
+              </button>
+            </ul>
+            <ul className="mx-1">
+              <button className="btn btn-primary btn-block py-3">
+                <Link to="/news">
+                  News
+                </Link>
+              </button>
+            </ul>
+            <ul className="mx-1">
+              <button className="btn btn-primary btn-block py-3">
+                <Link to="/aboutBetting">
+                  About Betting
+                </Link>
+              </button>
+            </ul>
+            <ul className="mx-1">
+              <button className="btn btn-primary btn-block py-3">
+                <Link to="/bettingSuggestions">
+                  Betting Suggestions
+                </Link>
+              </button>
+            </ul>
+            <ul className="mx-1">
+              <button className="btn btn-primary btn-block py-3">
+                <Link to="/trendingBets">
+                  Betting Trends
+                </Link>
+              </button>
+            </ul>
+            <ul className="mx-1">
+              <button className="btn btn-primary btn-block py-3">
+                <Link to="/golfPanda">
+                  Golf Panda
+                </Link>
+              </button>
+            </ul>
           </ul>
-          <ul className="mx-1">
-            <button> 
-              <Link to="/mybets">
-                My Bets
-              </Link>
-            </button>
-          </ul>
-          <ul className="mx-1">
-            <button>
-              <Link to="/mywallet">
-                My Wallet
-              </Link>
-            </button>
-          </ul>
-          <ul className="mx-1">
-            <button>
-              <Link to="/home">
-                Homepage
-              </Link>
-            </button>
-          </ul>
-          <ul className="mx-1">
-            <button>
-              <Link to="/news">
-                News
-              </Link>
-            </button>
-          </ul>
-          <ul className="mx-1">
-            <button>
-              <Link to="/aboutBetting">
-                About Betting
-              </Link>
-            </button>
-          </ul>
-          <ul className="mx-1">
-            <button>
-              <Link to="/bettingSuggestions">
-                Betting Suggestions
-              </Link>
-            </button>
-          </ul>
-          <ul className="mx-1">
-            <button>
-              <Link to="/trendingBets">
-                Trending Bets
-              </Link>
-            </button>
-          </ul>
-          <ul className="mx-1">
-            <button>
-              <Link to="/golfPanda">
-                Golf Panda
-              </Link>
-            </button>
-          </ul>
-        </ul>
+        </div>
       );
     } else {
       console.log("error!");
@@ -79,13 +81,8 @@ function Nav() {
   }
 
   return (
-    <header className="flex-row px-1">
-      <h1>
-        <Link to="/Bet">
-          <span role="img" aria-label="money eyes">🤑</span>
-          -Place Bets
-        </Link>
-      </h1>
+    <header className="flex-row px-1 padding">
+ 
 
       <nav>
         {showNavigation()}

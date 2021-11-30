@@ -51,8 +51,8 @@ function App() {
       <Router>
 
         <div className="flex-column justify-flex-start min-100-vh soccerfield">
-        <Header />
         <Nav />
+        <Header />
 
         <div className="container">
         <Route exact path="/">
