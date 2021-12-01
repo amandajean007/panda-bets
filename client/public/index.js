@@ -1,15 +1,15 @@
-let transactions = [];
+let bets = [];
 let myChart;
 
 // fetching all transactions
-fetch("/api/transaction")
+fetch("/api/bet")
   .then(response => {
     return response.json();
   })
 
   .then(data => {
     // save db data on global variable
-    transactions = data;
+    bets = data;
 
     populateTotal();
     populateTable();
@@ -18,7 +18,7 @@ fetch("/api/transaction")
 
 function populateTotal() {
   // reduce transaction amounts to a single total value
-  let total = transactions.reduce((total, t) => {
+  let total = bets.reduce((total, t) => {
     return total + parseInt(t.value);
   }, 0);
 
@@ -30,12 +30,12 @@ function populateTable() {
   let tbody = document.querySelector("#tbody");
   tbody.innerHTML = "";
 
-  transactions.forEach(transaction => {
+  bets.forEach(bet => {
     // create and populate a table row
     let tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${transaction.name}</td>
-      <td>${transaction.value}</td>
+      <td>${bet.name}</td>
+      <td>${bet.value}</td>
     `;
 
     tbody.appendChild(tr);
@@ -44,7 +44,7 @@ function populateTable() {
 
 function populateChart() {
   // copy array and reverse it
-  let reversed = transactions.slice().reverse();
+  let reversed = bets.slice().reverse();
   let sum = 0;
 
   // create date labels for chart
@@ -80,7 +80,7 @@ function populateChart() {
   });
 }
 
-function sendTransaction(isAdding) {
+function sendBet(isAdding) {
   let nameEl = document.querySelector("#t-name");
   let amountEl = document.querySelector("#t-amount");
   let errorEl = document.querySelector(".form .error");
@@ -94,7 +94,7 @@ function sendTransaction(isAdding) {
   }
 
   // create record
-  let transaction = {
+  let bet = {
     name: nameEl.value,
     value: amountEl.value,
     date: new Date().toISOString()
@@ -102,11 +102,11 @@ function sendTransaction(isAdding) {
 
   // if subtracting funds, convert amount to negative number
   if (!isAdding) {
-    transaction.value *= -1;
+    bet.value *= -1;
   }
 
   // add to beginning of current array of data
-  transactions.unshift(transaction);
+  bets.unshift(bet);
 
   // re-run logic to populate ui with new record
   populateChart();
@@ -114,9 +114,9 @@ function sendTransaction(isAdding) {
   populateTotal();
   
   // also send to server
-  fetch("/api/transaction", {
+  fetch("/api/bet", {
     method: "POST",
-    body: JSON.stringify(transactions),
+    body: JSON.stringify(bets),
     headers: {
       Accept: "application/json, text/plain, */*",
       "Content-Type": "application/json"
@@ -136,7 +136,7 @@ function sendTransaction(isAdding) {
   })
   .catch(err => {
     // fetch failed, so save in indexed db
-    saveRecord(transaction);
+    saveRecord(bet);
 
     // clear form
     nameEl.value = "";
@@ -145,9 +145,9 @@ function sendTransaction(isAdding) {
 }
 
 document.querySelector("#add-btn").onclick = function() {
-  sendTransaction(true);
+  sendBet(true);
 };
 
 document.querySelector("#sub-btn").onclick = function() {
-  sendTransaction(false);
+  sendBet(false);
 };

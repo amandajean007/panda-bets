@@ -46,9 +46,6 @@ const Header = () => {
               <Link className="btn m-2" to="/news">
                   Sports News
               </Link>
-              <Link className="btn m-2" to="/aboutBetting">
-                  About Betting in Colorado
-              </Link>
               <Link className="btn m-2" to="/bettingSuggestions">
                   Bet suggestions
               </Link>

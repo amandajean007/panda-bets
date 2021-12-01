@@ -22,7 +22,7 @@ function queryTodaysGames(){
 }
 
 async function queryByeWeek (){
-  let season = await document.querySelector("#season");
+  let season = await document.getElementById("season");
   let queryURL = "https://api.sportsdata.io/v3/nfl/scores/json/Byes/" + season + "?key=" + APIKey;
 
   fetch(queryURL)
@@ -40,7 +40,7 @@ async function queryByeWeek (){
 }
 
 async function newsByTeam() {
-  let team = await document.querySelector("#team");
+  let team = await document.getElementById("team");
   let queryURL = "https://api.sportsdata.io/v3/nfl/scores/json/NewsByTeam/" + team + "?key=" + APIKey;
   fetch(queryURL)
   .then(function (response) {
@@ -76,9 +76,8 @@ const Home = () => {
               className="form-input"
               placeholder="Examples: 2015REG, 2015PRE, 2015POST"
               name="season"
-              type=""
-              value={""}
-              onChange={queryByeWeek}
+              type="text"
+              id="season"
             />
             <button
               className="btn btn-block btn-info"
@@ -94,9 +93,8 @@ const Home = () => {
               className="form-input"
               placeholder="Examples: WAS, DEN"
               name="season"
-              type=""
-              value={""}
-              onChange={newsByTeam}
+              type="text"
+              id="team"
             />
             <button
               className="btn btn-block btn-info"
@@ -106,6 +104,9 @@ const Home = () => {
               News by Team
             </button>
           </form>
+      </div>
+      <div>
+        Hello
       </div>
     </main>
   );

@@ -3,7 +3,7 @@ import { Redirect, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 // import BetForm from '../components/Bets';
-import ThoughtList from '../components/ThoughtList';
+import BetList from '../components/BetList';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 
@@ -43,8 +43,8 @@ const Profile = () => {
         </h2>
 
         <div className="col-12 col-md-10 mb-5">
-          <ThoughtList
-            thoughts={user.bets}
+          <BetList
+            bets={user.bets}
             title={`${user.email}'s bets...`}
             showTitle={false}
             showUsername={false}

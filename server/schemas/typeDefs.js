@@ -8,6 +8,7 @@ const typeDefs = gql`
     email: String!
     password: String!
     bets: [Bet]
+    # friends: [User]
   }
   type Team {
     _id: ID!
@@ -41,15 +42,20 @@ const typeDefs = gql`
     team(_id: ID!): Team
     players: [Player]
     player(_id: ID!): Player
+    # friends: [User]
+    # friend(_id: ID!): User
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth,
     login(email: String!, password: String!): Auth,
-
     removeUser(email: String!, password: String!): User,
+    
     addBet(userId: ID!, bet: String!): User,
-    removeBet(userId: ID!, bet: String!): User
+    removeBet(userId: ID!, bet: String!): User,
+
+    # addFriend(userId: ID!, friend: String): User,
+    # removeFriend(userId: ID!, friend: String): User,
   }
 `;
 

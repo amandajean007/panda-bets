@@ -16,6 +16,9 @@ const resolvers = {
     bets: async () => {
       return await Bet.find({});
     },
+    // friends: async () => {
+    //   return await User.find({});
+    // }
   },
   
   Mutation: {
@@ -25,6 +28,7 @@ const resolvers = {
 
       return { token, user };
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -41,9 +45,20 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
+    // addFriend: async (parent, { userId, User }) => {
+    //   return await User.findOneAndUpdate(
+    //     { _id: userId },
+    //     {
+    //       $addToSet: { friends: User }
+    //     }
+    //   );
+    // },
+
     removeUser: async (parent, { userId }) => {
       return await User.findOneAndDelete({ _id: userId });
     },
+
     addBet: async (parent, { profileId, bet }) => {
       return Profile.findOneAndUpdate(
         { _id: profileId },
@@ -56,6 +71,7 @@ const resolvers = {
         }
       );
     },
+
     removeBet: async (parent, { profileId, bet }) => {
       return Profile.findOneAndUpdate(
         { _id: profileId },
