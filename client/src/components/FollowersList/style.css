@@ -1,0 +1,14 @@
+.link {
+    color: black;
+    font-size: 100%;
+    border-radius: 100%;
+    background-color: transparent;
+    text-align: center;
+    padding: 0.5rem 1.2rem;
+    border-style: none;
+}
+
+.white {
+    color: white;
+    font-size: 100%;
+}

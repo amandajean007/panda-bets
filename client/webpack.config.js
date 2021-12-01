@@ -22,6 +22,7 @@ module.exports = {
           },
         ]
     },
+    target: 'web',
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "client", "/public/index.html"),

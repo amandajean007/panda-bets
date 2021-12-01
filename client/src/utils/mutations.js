@@ -24,6 +24,28 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_FOLLOWER = gql`
+  mutation addFollower($id: Number) {
+    addFollower(id: $id) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
+
+export const ADD_FOLLOW = gql`
+  mutation addFollow($id: Number) {
+    addFollow(id: $id) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
+
 export const ADD_BET = gql`
   mutation addBet($betText: String!) {
     addBet(betText: $betText) {

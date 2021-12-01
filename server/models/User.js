@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
@@ -30,8 +30,16 @@ const userSchema = new Schema(
         ref: 'Bet'
       }
     ],
-    following: [{type: mongoose.Schema.ObjectId, ref: 'User'}],
-    followers: [{type: mongoose.Schema.ObjectId, ref: 'User'}]
+    following: [
+      {
+        type: mongoose.Schema.ObjectId, ref: 'User'
+      }
+    ],
+    followers: [
+      {
+        type: mongoose.Schema.ObjectId, ref: 'User'
+      }
+    ]
   }
 );
 

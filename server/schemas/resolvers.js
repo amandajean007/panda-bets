@@ -46,17 +46,26 @@ const resolvers = {
       return { token, user };
     },
 
-    // addFriend: async (parent, { userId, User }) => {
-    //   return await User.findOneAndUpdate(
-    //     { _id: userId },
-    //     {
-    //       $addToSet: { friends: User }
-    //     }
-    //   );
-    // },
+    addFollower: async (parent, { userId }) => {
+      return await User.findOneAndUpdate(
+        { _id: userId },
+        {
+          $addToSet: { followers: User }
+        }
+      );
+    },
 
-    removeUser: async (parent, { userId }) => {
-      return await User.findOneAndDelete({ _id: userId });
+    addFollow: async (parent, { userId }) => {
+      return await User.findOneAndUpdate(
+        { _id: userId },
+        {
+          $addToSet: { following: User }
+        }
+      );
+    },
+
+    removeUser: async (parent, { email }) => {
+      return await User.findOneAndDelete({ email: email});
     },
 
     addBet: async (parent, { profileId, bet }) => {

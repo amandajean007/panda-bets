@@ -35,25 +35,25 @@ const Header = () => {
                 Home
               </Link>
               <Link className="btn m-2" to="/myfriends">
-                  Friends
+                Friends
               </Link>
               <Link className="btn m-2" to="/mybets">
-                  Bets
+                Bets
               </Link>
               <Link className="btn m-2" to="/mywallet">
-                  Wallet
+                Wallet
               </Link>
               <Link className="btn m-2" to="/news">
-                  Sports News
+                Sports News
               </Link>
-              <Link className="btn m-2" to="/bettingSuggestions">
-                  Bet suggestions
+              <Link className="btn m-2" to="/projections">
+                Projections
               </Link>
               <Link className="btn m-2" to="/trendingBets">
-                  Trending
+                Trending
               </Link>
               <Link className="btn m-2" to="/golfPanda">
-                  Golf Panda - Golf bet tracker
+                Golf Panda
               </Link>
 
 

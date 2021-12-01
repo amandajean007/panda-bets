@@ -12,6 +12,12 @@ export const QUERY_USER = gql`
         betText
         createdAt
       }
+      followers {
+        _id
+      }
+      following {
+        _id
+      }
     }
   }
 `;
@@ -57,6 +63,12 @@ export const QUERY_ME = gql`
         betAuthor
         createdAt
       }
+      followers {
+        _id
+      }
+      following {
+        _id
+      } 
     }
   }
 `;

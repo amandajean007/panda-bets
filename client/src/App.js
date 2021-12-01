@@ -11,10 +11,14 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import News from './pages/News';
 import Bet from './pages/Bet';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Projections from './pages/Projections';
+import Following from './components/FollowingList';
+import Followers from './components/FollowersList';
 import "./App.css";
 
 // Construct our main GraphQL API endpoint
@@ -58,6 +62,18 @@ function App() {
         </Route>
         <Route exact path="/login">
           <Login />
+        </Route>
+        <Route exact path="/myfriends">
+          <Following />
+        </Route>
+        <Route exact path="/myfriends">
+          <Followers />
+        </Route>
+        <Route exact path="/projections">
+          <Projections />
+        </Route>
+        <Route exact path="/news">
+          <News />
         </Route>
         <Route exact path="/signup">
           <Signup />
