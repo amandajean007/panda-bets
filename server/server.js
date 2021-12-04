@@ -1,4 +1,9 @@
 const express = require('express');
+const app = express();
+// // For use with socket.io
+// const http = require('http');
+// const server = http.createServer(app);
+// // ^^^
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const mongoose = require("mongoose");
@@ -10,7 +15,12 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
-const app = express();
+
+// // For use with socket.io
+// app.get('/', (req, res) => {
+//   res.send('<h1>Hello world</h1>');
+// });
+// // ^^^
 
 app.use(logger("dev"));
 
@@ -30,6 +40,8 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
+
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
@@ -42,3 +54,9 @@ db.once('open', () => {
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
 });
+
+// // For use with socket.io
+// server.listen(3000, () => {
+//   console.log('listening on *:3000');
+// });
+// // ^^^

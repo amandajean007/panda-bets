@@ -46,12 +46,14 @@ const resolvers = {
       return { token, user };
     },
 
-    addFollower: async (parent, { userId }) => {
+
+//  use   .populate()
+    addFollower: async (User, { userId }) => {
       return await User.findOneAndUpdate(
         { _id: userId },
         {
-          $addToSet: { followers: User }
-        }
+          $addToSet: { followers: User._id }
+        } 
       );
     },
 
@@ -59,7 +61,7 @@ const resolvers = {
       return await User.findOneAndUpdate(
         { _id: userId },
         {
-          $addToSet: { following: User }
+          $addToSet: { friends: User }
         }
       );
     },

@@ -13,10 +13,10 @@ export const QUERY_USER = gql`
         createdAt
       }
       followers {
-        _id
+          _id
       }
-      following {
-        _id
+      friends {
+          _id
       }
     }
   }
@@ -66,7 +66,7 @@ export const QUERY_ME = gql`
       followers {
         _id
       }
-      following {
+      friends {
         _id
       } 
     }

@@ -11,13 +11,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import News from './pages/News';
-import Bet from './pages/Bet';
+// import News from './pages/News';
+// import Bet from './pages/Bet';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Projections from './pages/Projections';
-import Following from './components/FollowingList';
+import Friends from './components/FollowingList';
 import Followers from './components/FollowersList';
 import "./App.css";
 
@@ -57,14 +57,14 @@ function App() {
         <Header />
 
         <div className="container">
-        <Route exact path="/">
+        <Route exact path="/home">
           <Home />
         </Route>
         <Route exact path="/login">
           <Login />
         </Route>
         <Route exact path="/myfriends">
-          <Following />
+          <Friends />
         </Route>
         <Route exact path="/myfriends">
           <Followers />
@@ -72,15 +72,15 @@ function App() {
         <Route exact path="/projections">
           <Projections />
         </Route>
-        <Route exact path="/news">
+        {/* <Route exact path="/news">
           <News />
-        </Route>
+        </Route> */}
         <Route exact path="/signup">
           <Signup />
         </Route>
-        <Route exact path="/Bet">
+        {/* <Route exact path="/Bet">
           <Bet />
-        </Route>
+        </Route> */}
         <Route exact path="/profiles/:email">
           <Profile />
         </Route>

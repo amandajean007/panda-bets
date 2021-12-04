@@ -54,8 +54,8 @@ const Profile = () => {
             showUsername={false}
           />
           <FollowingList
-            following={user.following}
-            title={`${user.email}'s follows...`}
+            friends={user.friends}
+            title={`${user.email}'s friends...`}
             showTitle={false}
             showUsername={false}
           />

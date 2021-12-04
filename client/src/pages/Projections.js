@@ -1,91 +1,81 @@
+import React, { useState } from 'react';
 import "../App.css"
+const APIKey = "3593b7aca7msh6dcc699ed4295a8p1306e2jsne0bcb0b6dffc"
+var sport = document.getElementById('sport');
 
-let APIKey = "c8c151ef5d554390b08b821e62264b1f";
+// API function
+function NflOdds() {
 
-async function fantasyDefenseProjectionsByGame() {
-	let season = await document.getElementById("season");
-	let week = await document.getElementById("week");
-	let queryURL = "https://api.sportsdata.io/v3/nfl/projections/json/FantasyDefenseProjectionsByGame/" + season + "/" + week + "?key=" + APIKey;
-  
-	fetch(queryURL)
-	.then(function (response) {
-		
-	  if(response.status !== 200){
-		console.log("error collecting bye-weeks");
-		} else {
-		  return response.json();
-		}
-	})
-	.then(function (data) {
-		console.log(data);
-	});
-  }
+  // fetch request as a variable
+  var requestUrl = 'https://rapidapi.com/theoddsapi/api/live-sports-odds/' + sport + '?key=' + APIKey;
+  // APi key as a variable
 
-async function bettingMetadata() {
-	let queryURL = "https://api.sportsdata.io/v3/nfl/odds/json/BettingMetadata?key=" + APIKey;
-  
-	fetch(queryURL)
-	.then(function (response) {
-		
-	if(response.status !== 200){
-		console.log("error collecting metadata");
-		} else {
-		  return response.json();
-		}
-	})
-	.then(function (data) {
-		console.log(data);
-	});
+// API fetch
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data)
+      }
+    );
 }
 
-  const Projections = () => {
-	return (
-	  <main>
-		<div className="card-body padding title">
-			Projected Fantasy Defense Game Stats (w/ DFS Salaries)
-			<form onSubmit={fantasyDefenseProjectionsByGame}>
-			<input
-				className="form-input"
-				placeholder="Examples: 2015REG, 2015PRE, 2015POST"
-				name="season"
-				type="text"
-				id="season"
-			/>
-			<input
-				className="form-input"
-				placeholder="Examples: 1, 2, 3"
-				name="week"
-				type="text"
-				id="week"
-			/>
-			<button
-				className="btn btn-block btn-info"
-				style={{ cursor: 'pointer' }}
-				type="submit"
-			>
-				Get Stats
-			</button>
-			</form>
-		</div>
+const Projections = () => {
+	const [formState, setFormState] = useState({ sport: ''});
+// update state based on form input changes
+	const handleChange = (event) => {
+    const { sport, value } = event.target;
 
+    setFormState({
+      ...formState,
+      [sport]: value,
+    });
+  };
+
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await NflOdds({
+        variables: { ...formState },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      sport: '',
+    });
+  }
+
+	return (
+		<main>
 		<div className="card-body padding title">
-		Aggregated Odds, Consensus Odds
-			<form onSubmit={bettingMetadata}>
+			Live Sports Odds
+			<form onSubmit={handleFormSubmit}>
+				<input
+					placeholder="americanfootball_nfl"
+					value={sport}
+					className="form-input w-100"
+					onChange={handleChange}
+					id="sport"
+				/>
 				<button
 					className="btn btn-block btn-info"
 					style={{ cursor: 'pointer' }}
 					type="submit"
 				>
-					Get Stats
-				</button>
+				Get Odds
+			</button>
 			</form>
 		</div>
-
-	  </main>
+		</main>
 	);
-  };
-  
-  
-  
-  export default Projections;
-  
+};
+
+
+
+export default Projections;

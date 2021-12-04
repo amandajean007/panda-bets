@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
         ref: 'Bet'
       }
     ],
-    following: [
+    friends: [
       {
         type: mongoose.Schema.ObjectId, ref: 'User'
       }

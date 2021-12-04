@@ -9,7 +9,7 @@ const typeDefs = gql`
     password: String!
     bets: [Bet]
     followers: [User]
-    following: [User]
+    friends: [User]
   }
   type Team {
     _id: ID!

@@ -31,7 +31,7 @@ const Header = () => {
               <button className="btn btn m-2" onClick={logout}>
                 Logout
               </button>
-              <Link className="btn m-2" to="/">
+              <Link className="btn m-2" to="/home">
                 Home
               </Link>
               <Link className="btn m-2" to="/myfriends">
