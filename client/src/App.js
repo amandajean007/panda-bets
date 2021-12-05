@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,15 +7,22 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+// import pages
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 // import News from './pages/News';
-// import Bet from './pages/Bet';
+import Bet from './pages/Bet';
+import Projections from './pages/Projections';
 import Profile from './pages/Profile';
+import StripeCancel from './pages/StripeCancel';
+import StripeCheckout from './pages/StripeCheckout';
+import StripeSuccess from './pages/StripeSuccess';
+import Wallet from './pages/Wallet';
+
+// import components
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Projections from './pages/Projections';
 import Friends from './components/FollowingList';
 import Followers from './components/FollowersList';
 import "./App.css";
@@ -78,11 +84,23 @@ function App() {
         <Route exact path="/signup">
           <Signup />
         </Route>
-        {/* <Route exact path="/Bet">
+        <Route exact path="/bet">
           <Bet />
-        </Route> */}
+        </Route>
         <Route exact path="/profiles/:email">
           <Profile />
+        </Route>
+        <Route exact path="/stripecancel">
+          <StripeCancel />
+        </Route>
+        <Route exact path="/stripesuccess">
+          <StripeSuccess />
+        </Route>
+        <Route exact path="/stripecheckout">
+          <StripeCheckout />
+        </Route>
+        <Route exact path="/mywallet">
+          <Wallet />
         </Route>
         </div>
 

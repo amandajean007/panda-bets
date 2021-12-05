@@ -1,18 +1,11 @@
-.soccerfield {
-    background-image: url('../src/broncos\ stadium\ dark.png');
-    background-position: fixed;
-    background-size: cover;
+a {
+    color: white;
 }
 
-.green {
-    background-color: #2d3b6a;
-    margin: 10%;
-    padding: 10%;
-}
-
-.padding {
-    margin: 5px;
-    padding: 5px;
+button {
+    color: #3d394d;
+    background-color: #1B4332;
+    padding: 10px;
     text-align: center;
 }
 
@@ -24,12 +17,26 @@ form {
     justify-content: center;
 }
 
+.green {
+    background-color: #2d3b6a;
+    margin: 10%;
+    padding: 10%;
+}
+
 .navBarButton {
     color: #74C69D;
 }
 
-a {
-    color: white;
+.padding {
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+}
+
+.soccerfield {
+    background-image: url('../src/broncos\ stadium\ dark.png');
+    background-position: fixed;
+    background-size: cover;
 }
 
 .title {

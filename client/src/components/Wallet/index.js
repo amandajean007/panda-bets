@@ -1,4 +1,4 @@
-let bets = [];
+let transactions = [];
 let myChart;
 
 // fetching all transactions
@@ -9,7 +9,7 @@ fetch("/api/bet")
 
   .then(data => {
     // save db data on global variable
-    bets = data;
+    transactions = data;
 
     populateTotal();
     populateTable();
@@ -18,7 +18,7 @@ fetch("/api/bet")
 
 function populateTotal() {
   // reduce bet amounts to a single total value
-  let total = bets.reduce((total, t) => {
+  let total = transactions.reduce((total, t) => {
     return total + parseInt(t.value);
   }, 0);
 
@@ -30,7 +30,7 @@ function populateTable() {
   let tbody = document.querySelector("#tbody");
   tbody.innerHTML = "";
 
-  bets.forEach(bet => {
+  transactions.forEach(bet => {
     // create and populate a table row
     let tr = document.createElement("tr");
     tr.innerHTML = `
@@ -44,7 +44,7 @@ function populateTable() {
 
 function populateChart() {
   // copy array and reverse it
-  let reversed = bets.slice().reverse();
+  let reversed = transactions.slice().reverse();
   let sum = 0;
 
   // create date labels for chart
@@ -80,7 +80,7 @@ function populateChart() {
   });
 }
 
-function sendBet(isAdding) {
+function sendTransaction(isAdding) {
   let nameEl = document.querySelector("#t-name");
   let amountEl = document.querySelector("#t-amount");
   let errorEl = document.querySelector(".form .error");
@@ -106,7 +106,7 @@ function sendBet(isAdding) {
   }
 
   // add to beginning of current array of data
-  bets.unshift(bet);
+  transactions.unshift(bet);
 
   // re-run logic to populate ui with new record
   populateChart();
@@ -116,7 +116,7 @@ function sendBet(isAdding) {
   // also send to server
   fetch("/api/bet", {
     method: "POST",
-    body: JSON.stringify(bets),
+    body: JSON.stringify(transactions),
     headers: {
       Accept: "application/json, text/plain, */*",
       "Content-Type": "application/json"
@@ -145,9 +145,9 @@ function sendBet(isAdding) {
 }
 
 document.querySelector("#add-btn").onclick = function() {
-  sendBet(true);
+  sendTransaction(true);
 };
 
 document.querySelector("#sub-btn").onclick = function() {
-  sendBet(false);
+  sendTransaction(false);
 };

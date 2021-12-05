@@ -37,7 +37,7 @@ const Header = () => {
               <Link className="btn m-2" to="/myfriends">
                 Friends
               </Link>
-              <Link className="btn m-2" to="/mybets">
+              <Link className="btn m-2" to="/bet">
                 Bets
               </Link>
               <Link className="btn m-2" to="/mywallet">

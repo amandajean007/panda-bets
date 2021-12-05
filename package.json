@@ -24,6 +24,7 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "compression": "^1.7.4"
+    "compression": "^1.7.4",
+    "stripe": "^8.191.0"
   }
 }

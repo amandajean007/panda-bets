@@ -1,19 +1,15 @@
 
 
 
-// const Bet = () => {
-//   return (
-//     <div>
-//       <form
-//         onSubmit={}
-//       >
-//       <button
-//         id="fetchButton"
-//         type="submit"
-//       ></button>
-//       </form>
-//     </div>
-//   )
-// }
+const Bet = () => {
+  return (
+    <div>
+      <button
+        id="fetchButton"
+        type="submit"
+      >Bottone</button>
+    </div>
+  )
+}
 
-// export default Bet;
+export default Bet;

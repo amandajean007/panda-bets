@@ -11,12 +11,37 @@ const logger = require("morgan");
 const compression = require("compression");
 // const apiRoutes = require("./routes/api.js");
 
+// Stripe
+const stripe = require('stripe')('sk_test_51K32WEEQDZ0z8LDS4F3uc9YdN2lM2SDgwjXLFGDsXyIW1MyStjKThZNynV1oLmj4sIj3aAh8D4Th7VbRHDuO1VOj00yBvVKxFc');
+
+const YOUR_DOMAIN = 'http://localhost:4242';
+
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        price: '{{PRICE_ID}}',
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: `${YOUR_DOMAIN}/success.html`,
+    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+  });
+
+  res.redirect(303, session.url);
+});
+
+app.listen(4242, () => console.log('Running on port 4242'));
+// Stripe^^
+
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 
-// // For use with socket.io
+// // Socket.io
 // app.get('/', (req, res) => {
 //   res.send('<h1>Hello world</h1>');
 // });
