@@ -41,6 +41,8 @@ const Projections = () => {
       const { data } = await NflOdds({
         variables: { ...formState },
       });
+      JSON.stringify(data)
+      console.log(data)
     } catch (e) {
       console.error(e);
     }

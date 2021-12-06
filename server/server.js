@@ -11,7 +11,7 @@ const logger = require("morgan");
 const compression = require("compression");
 // const apiRoutes = require("./routes/api.js");
 
-// Stripe
+// Stripe vv
 const stripe = require('stripe')('sk_test_51K32WEEQDZ0z8LDS4F3uc9YdN2lM2SDgwjXLFGDsXyIW1MyStjKThZNynV1oLmj4sIj3aAh8D4Th7VbRHDuO1VOj00yBvVKxFc');
 
 const YOUR_DOMAIN = 'http://localhost:4242';

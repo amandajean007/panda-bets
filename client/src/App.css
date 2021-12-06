@@ -10,7 +10,7 @@ button {
 }
 
 form {
-    width: 97%;
+    width: 100%
 }
 
 .center {
@@ -42,4 +42,8 @@ form {
 .title {
     color: white;
     font-size: 40px;
+}
+
+.width-sm {
+    width: 100px;
 }
