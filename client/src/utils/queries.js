@@ -26,9 +26,8 @@ export const QUERY_BETS = gql`
   query getBets {
     bets {
       _id
-      betAmount
-      betAuthor
-      createdAt
+      name
+      amount
     }
   }
 `;
@@ -37,15 +36,8 @@ export const QUERY_SINGLE_BET = gql`
   query getSingleBet($betId: ID!) {
     bet(betId: $betId) {
       _id
-      betText
-      betAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        commentAuthor
-        createdAt
-      }
+      name
+      amount
     }
   }
 `;
@@ -59,9 +51,8 @@ export const QUERY_ME = gql`
       email
       bets {
         _id
-        betText
-        betAuthor
-        createdAt
+        name
+        amount
       }
       followers {
         _id

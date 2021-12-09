@@ -1,7 +1,7 @@
 let bets = [];
 let myChart;
 
-// fetching all transactions
+// fetching all bets
 fetch("/api/bet")
   .then(response => {
     return response.json();
@@ -35,7 +35,7 @@ function populateTable() {
     let tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${bet.name}</td>
-      <td>${bet.value}</td>
+      <td>${bet.amount}</td>
     `;
 
     tbody.appendChild(tr);
@@ -67,7 +67,7 @@ function populateChart() {
   let ctx = document.getElementById("myChart").getContext("2d");
 
   myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'list',
     data: {
       labels,
       datasets: [{
@@ -96,13 +96,13 @@ function sendBet(isAdding) {
   // create record
   let bet = {
     name: nameEl.value,
-    value: amountEl.value,
-    date: new Date().toISOString()
+    amount: amountEl.value,
+    // date: new Date().toISOString()
   };
 
   // if subtracting funds, convert amount to negative number
   if (!isAdding) {
-    bet.value *= -1;
+    bet.amount *= -1;
   }
 
   // add to beginning of current array of data
@@ -148,6 +148,6 @@ document.querySelector("#add-btn").onclick = function() {
   sendBet(true);
 };
 
-document.querySelector("#sub-btn").onclick = function() {
-  sendBet(false);
-};
+// document.querySelector("#sub-btn").onclick = function() {
+//   sendBet(false);
+// };

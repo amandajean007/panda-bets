@@ -31,7 +31,7 @@ const Profile = () => {
 
   if (!user?.email) {
     return (
-      <h4>
+      <h4 className="white padding">
         You need to be logged in to see this. Use the navigation links above to
         sign up or log in!
       </h4>
@@ -40,30 +40,23 @@ const Profile = () => {
 
   return (
     <div className="title">
-      ho
       <div className="flex-row justify-center mb-3">
         <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5 ">
-          Viewing {userParam ? `${user.email}'s` : 'your'} profile.
+          Viewing {userParam ? `${user.firstName}'s` : 'your'} profile.
         </h2>
 
         <div className="col-12 col-md-10 mb-5">
           <BetList
             bets={user.bets}
             title={`${user.email}'s bets...`}
-            showTitle={false}
-            showUsername={false}
           />
           <FollowingList
             friends={user.friends}
-            title={`${user.email}'s friends...`}
-            showTitle={false}
-            showUsername={false}
+            title={`${user.firstName}'s friends...`}
           />
           <FollowersList
             followers={user.followers}
-            title={`${user.email}'s followers...`}
-            showTitle={false}
-            showUsername={false}
+            title={`${user.firstName}'s followers...`}
           />
         </div>
         {!userParam && (

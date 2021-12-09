@@ -9,7 +9,7 @@ const BetList = ({
 }) => {
   if (!bets.length) {
     return <h3>No Bets Yet</h3>;
-  }
+  } else
 
   return (
     <div>
@@ -31,7 +31,7 @@ const BetList = ({
               ) : (
                 <>
                   <span style={{ fontSize: '1rem' }}>
-                    You had this thought on {bet.createdAt}
+                    You made this bet on {bet.createdAt}
                   </span>
                 </>
               )}
@@ -43,7 +43,7 @@ const BetList = ({
               className="btn btn-primary btn-block btn-squared"
               to={`/bets/${bet._id}`}
             >
-              Join the discussion on this thought.
+              Join the discussion on this bet.
             </Link>
           </div>
         ))}

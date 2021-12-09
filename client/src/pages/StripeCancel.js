@@ -4,11 +4,9 @@ import '../App.css';
 const StripeCancel = () => {
 	return (
 		<div>
-			<body>
 			<section>
 				<p>Go Back</p>
 			</section>
-			</body>
 		</div>
 		
 	);

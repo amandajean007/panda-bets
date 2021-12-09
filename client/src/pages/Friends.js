@@ -9,14 +9,8 @@ import "./Home.css";
 const Friends = () => {
   return (
     <main>
-      <div>
-        <button
-          className="btn btn-block btn-info"
-          style={{ cursor: 'pointer' }}
-          type="submit"
-        >
-          Add Friend
-        </button>
+      <div className="white padding">
+       FRIENDS
       </div>
     </main>
   );

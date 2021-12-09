@@ -1,20 +1,38 @@
 const express = require('express');
 const app = express();
-// // For use with socket.io
-// const http = require('http');
-// const server = http.createServer(app);
-// // ^^^
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
-const mongoose = require("mongoose");
-const logger = require("morgan");
 const compression = require("compression");
-// const apiRoutes = require("./routes/api.js");
+const cors = require('cors');
 
-// Stripe vv
-const stripe = require('stripe')('sk_test_51K32WEEQDZ0z8LDS4F3uc9YdN2lM2SDgwjXLFGDsXyIW1MyStjKThZNynV1oLmj4sIj3aAh8D4Th7VbRHDuO1VOj00yBvVKxFc');
+const uuid = require('uuid');
 
-const YOUR_DOMAIN = 'http://localhost:4242';
+// const STRIP_API_SECRET = process.env.STRIP_API_SECRET
+const stripe = require('stripe')(process.env.STRIP_API_SECRET);
+// mongoose keeping track of betSchema
+const logger = require("morgan");
+const mongoose = require("mongoose");
+const apiRoutes = require("./routes/api.js");
+app.use(logger("dev"));
+
+
+mongoose.connection.on('connected', () => {
+  console.log('Mongoose is connected!!!!');
+});
+
+app.use(apiRoutes);
+
+
+
+
+// // socket.io
+// const http = require('http');
+// const server = http.createServer(app);
+
+
+// Stripe
+const STRIPE_KEY = process.env.STRIPE_KEY;
+const YOUR_DOMAIN = 'http://localhost:4242/';
 
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
@@ -26,52 +44,75 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: `${YOUR_DOMAIN}/success.html`,
-    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+    success_url: `${YOUR_DOMAIN}/stripesuccess`,
+    cancel_url: `${YOUR_DOMAIN}/stripecancel`,
   });
 
   res.redirect(303, session.url);
 });
 
-app.listen(4242, () => console.log('Running on port 4242'));
-// Stripe^^
 
+
+
+// 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 
-// // Socket.io
+
+// // socket.io
 // app.get('/', (req, res) => {
 //   res.send('<h1>Hello world</h1>');
 // });
-// // ^^^
-
-app.use(logger("dev"));
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
 });
 
+// middleware
 server.applyMiddleware({ app });
-
 app.use(compression());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(cors());
+// app.use(apiRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
 
-
-app.get('*', (req, res) => {
+// routes
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-// app.use(apiRoutes);
+app.post('/payment', (req, res) => {
+
+  const {product, token} = req.body;
+  console.log("PRODUCT ", product);
+  console.log("PRICE ", price);
+  const idempontencyKey = uuid()
+
+  return stripe.customers.create({
+    email: token.email,
+    source: token.id
+  }).then(customer => {
+    stripe.charges.create({
+      amount: product.price * 100,
+      currency: 'usd',
+      customer: customer.id,
+      receipt_email: token.email, password,
+      description: `purchase of product.name`
+    }, {idempontencyKey})
+  })
+  .then(result => res.status(200).json(result))
+  .catch(err=>console.log(err))
+
+})
 
 db.once('open', () => {
   app.listen(PORT, () => {
@@ -85,3 +126,6 @@ db.once('open', () => {
 //   console.log('listening on *:3000');
 // });
 // // ^^^
+
+// listen
+app.listen(4242, () => console.log('Stripe running on port http://localhost:4242/'));

@@ -1,51 +1,132 @@
-import Auth from '../utils/auth'
+import React, { useState} from 'react';
+import { useMutation, useQuery } from '@apollo/client';
+import { ADD_BET } from '../utils/mutations';
+import { QUERY_BETS } from '../utils/queries';
+// Import the `useParams()` hook
+import { useParams } from 'react-router-dom';
+// import Auth from '../utils/auth';
+import '../App.css';
 
 const Bet = () => {
-  return (
-    <div>
-       <body className="padding">
-        <div class="wrapper">
-          <div class="total">
-            <div class="total">Your total funds available to bet: $<span id="total">0</span></div>
-          </div>
-          
-          <div class="form">
-            <input type="text" id="t-name" placeholder="Name of Bet" />
-            <input type="number" min="0" id="t-amount" placeholder="Bet amount" />
-            <button id="add-btn" className="btn m-2"><i class="fa fa-plus buttons"></i>{Auth.getProfile().data.firstName} bets...</button>
-            <p class="error"></p>
-          </div>
+  // add bet
+  const [formState, setFormState] = useState({
+    name: '',
+    amount: ''
+  });
+  const [addBet, { error, loading }] = useMutation(ADD_BET);
 
-          <div class="transactions">
-            <table>
-              <thead>
-                <th>Bet</th>
-                <th>Amount</th>
-              </thead>
-              <tbody id="tbody">
-              </tbody>
-            </table>
-          </div>
-          {/* <canvas id="myChart"></canvas> */}
-        </div>
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="./dist/bundle.js"></script>
-  <script src="index.js"></script>
-  <script src="db.js"></script>
-  <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("service-worker.js").then(reg => {
-          console.log("We found your service worker file!", reg);
-        });
-      })
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log("form state: " + formState);
+
+    try {
+      const { data } = await addBet({
+        variables: { ...formState },
+      });
+      JSON.stringify(data);
+      console.log("data ", data);
+      // Auth.login(data.addBet.token);
+      // console.log("data.addbet.token: " + data.addBet.token);
+    } catch (error) {
+      console.error(error);
+      console.log("error with handleSubmit");
     }
-  </script>
 
-      </body>
-    </div>
-  )
-}
+  };
+
+  // return all Bets
+  const { betId } = useParams();
+
+  const { betdata } = useQuery(QUERY_BETS, {
+    // pass URL parameter
+    variables: { betId: betId },
+  });
+
+  const bet = betdata?.bet || {};
+  
+  return (
+    <main className="flex-row justify-center mb-4">
+      <div className="col-12 col-lg-10">
+        <div className="padding">
+          <h4 className="padding white title">Place Your Bets</h4>
+          <div className="card-body">
+            {loading ? (
+              <p className="white padding">
+                Loading...
+              </p>
+            ) : (
+              <form onSubmit={handleFormSubmit}>
+                <input
+                  className="form-input"
+                  placeholder="What do you bet?"
+                  name="name"
+                  type="text"
+                  value={formState.name}
+                  onChange={handleChange}
+                />
+                <input
+                  className="form-input"
+                  placeholder="How much?"
+                  name="amount"
+                  type="text"
+                  value={formState.amount}
+                  onChange={handleChange}
+                />
+                <button
+                  className="btn btn-primary"
+                  style={{ cursor: 'pointer' }}
+                  type="submit"
+                  id="add-btn"
+                >
+                  Add bet to list
+                </button>
+              </form>
+            )}
+
+            {error && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {error.message}
+              </div>
+            )}
+          </div>
+{/* List of Bets */}
+          <div className="my-3">
+            <h3 className="card-header bg-dark text-light p-2 m-0">
+              Current Bets<br />
+            </h3>
+            <div className="bg-light py-4">
+
+              <blockquote
+                style={{
+                  fontSize: '1.5rem',
+                  border: '2px solid'
+                }}
+                className="padding"
+              >
+                {bet.name}
+                {bet.amount}
+              <button className="btn btn-primary padding">
+                Collect
+              </button>
+              </blockquote>
+              
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  );
+};
 
 export default Bet;

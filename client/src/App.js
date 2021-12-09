@@ -6,19 +6,26 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { moneyToBet } from './pages/Bet'
+
+//
 
 // import pages
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+
+// Stripe
+import StripeCheckout from "react-stripe-checkout";
+import React, { useState } from "react";
+
 // import News from './pages/News';
 import Bet from './pages/Bet';
 import Projections from './pages/Projections';
 import Profile from './pages/Profile';
 import StripeCancel from './pages/StripeCancel';
-import StripeCheckout from './pages/StripeCheckout';
 import StripeSuccess from './pages/StripeSuccess';
-import Wallet from './pages/Wallet';
+// import Wallet from './pages/Wallet';
 
 // import components
 import Header from './components/Header';
@@ -31,7 +38,6 @@ import "./App.css";
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
-
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
@@ -46,15 +52,45 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-
-
 const client = new ApolloClient({
   // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
+
+
 function App() {
+  const money = document.querySelector("moneyToBet");
+
+  const [product] = useState ({
+    name: "Tom Brady goin' down!",
+    price: money
+  })
+
+  const makePayment = token => {
+    const body = {
+      token,
+      product
+    }
+    const headers = {
+      "Content-Type": "application/json"
+    }
+
+    return fetch(`http://localhost:4242/payment`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(body)
+    }).then(response => {
+      console.log("RESPONSE ", response)
+      const {status} = response;
+      console.log("STATUS ", status)
+    })
+    .catch(error => console.log(error))
+  }
+
+
+
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -87,7 +123,7 @@ function App() {
         <Route exact path="/bet">
           <Bet />
         </Route>
-        <Route exact path="/profiles/:email">
+        <Route exact path="/me/:email">
           <Profile />
         </Route>
         <Route exact path="/stripecancel">
@@ -96,12 +132,21 @@ function App() {
         <Route exact path="/stripesuccess">
           <StripeSuccess />
         </Route>
-        <Route exact path="/stripecheckout">
-          <StripeCheckout />
+        <Route exact path="/bet">
+          <StripeCheckout
+            stripeKey={'pk_test_51K32WEEQDZ0z8LDS2i2RbbS1q4SK60c2uqLjAWwokMudqEdYlOO33lrcZ30vNTd2KxEiH2XfokzFWDR80RC5nu9P004pTNtfRH'}
+            token={makePayment}
+            name="Bet Bundle"
+            amount={product.price * 100}
+          >
+            <div className="padding">
+              <button className="btn btn-danger">Place All Bets <br/>Total: ${product.price}</button>
+            </div>
+          </StripeCheckout>
         </Route>
-        <Route exact path="/mywallet">
+        {/* <Route exact path="/mywallet">
           <Wallet />
-        </Route>
+        </Route> */}
         </div>
 
         <Footer />

@@ -24,9 +24,7 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "compression": "^1.7.4",
-    "stripe": "^8.191.0",
-    "stripe-cli": "^0.1.0"
+    // "bcrypt": "^5.0.1",
+    "compression": "^1.7.4"
   }
 }

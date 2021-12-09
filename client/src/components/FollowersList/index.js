@@ -7,7 +7,7 @@ import 'antd/dist/antd.css';
 
 const Followers = (followers) => {
   if (!followers.length) {
-    return <h3>No Followers Yet</h3>;
+    return <h3 className="white padding">No Followers Yet</h3>;
   }
     return (
       <header className="text-light mb-4 py-3 flex-row align-center">

@@ -4,23 +4,16 @@ const Schema = mongoose.Schema;
 
 const betSchema = new Schema(
     {
-        teamBet: {
-            type: Schema.Types.ObjectId,
-            ref: 'Team'
+        name: {
+          type: String,
+          trim: true,
+          required: "Enter a name for the bet"
         },
-        playerBet: {
-            type: Schema.Types.ObjectId,
-            ref: 'Player'
-        },
-        ammount: {
-            type: Number,
-            required: true,
-        },
-        user: {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
+        amount: {
+          type: Number,
+          required: "Enter an amount to bet"
         }
-    }
+      }
 );
 
 const Bet = mongoose.model('Bet', betSchema);

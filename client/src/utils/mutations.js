@@ -47,16 +47,10 @@ export const ADD_FOLLOW = gql`
 `;
 
 export const ADD_BET = gql`
-  mutation addBet($betText: String!) {
-    addBet(betText: $betText) {
-      _id
-      betText
-      betAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-      }
+  mutation addBet($name: String!, $amount: Int!) {
+    addBet(name: $name, amount: $amount) {
+      name
+      amount
     }
   }
 `;

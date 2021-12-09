@@ -1,17 +1,11 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Team, Player, Bet } = require('../models');
+const { User, Bet } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     users: async () => {
       return await User.find({});
-    },
-    teams: async () => {
-      return await Team.find({});
-    },
-    players: async () => {
-      return await Player.find({});
     },
     bets: async () => {
       return await Bet.find({});
@@ -22,6 +16,7 @@ const resolvers = {
   },
   
   Mutation: {
+// USERS
     addUser: async (parent, { firstName, lastName, email, password }) => {
       const user = await User.create({ firstName, lastName, email, password });
       const token = signToken(user);
@@ -46,33 +41,33 @@ const resolvers = {
       return { token, user };
     },
 
-
-//  use   .populate()
-    addFollower: async (User, { userId }) => {
-      return await User.findOneAndUpdate(
-        { _id: userId },
-        {
-          $addToSet: { followers: User._id }
-        } 
-      );
-    },
-
-    addFollow: async (parent, { userId }) => {
-      return await User.findOneAndUpdate(
-        { _id: userId },
-        {
-          $addToSet: { friends: User }
-        }
-      );
-    },
-
     removeUser: async (parent, { email }) => {
       return await User.findOneAndDelete({ email: email});
     },
 
-    addBet: async (parent, { profileId, bet }) => {
-      return Profile.findOneAndUpdate(
-        { _id: profileId },
+// FRIENDS FOLLOWERS  use   .populate()
+    // addFollower: async (User, { _id }) => {
+    //   return await User.findOneAndUpdate(
+    //     { _id: _id },
+    //     {
+    //       $addToSet: { followers: User._id }
+    //     } 
+    //   );
+    // },
+
+    // addFriend: async (parent, { _id }) => {
+    //   return await User.findOneAndUpdate(
+    //     { _id: _id },
+    //     {
+    //       $addToSet: { friends: User }
+    //     }
+    //   );
+    // },
+
+// BETS
+    addBet: async (parent, { userId, bet }) => {
+      return await User.findOneAndUpdate(
+        { _id: userId },
         {
           $addToSet: { bets: bet },
         },

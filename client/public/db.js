@@ -9,7 +9,7 @@ request.onsuccess = function(event) {
     if (navigator.onLine) {
         console.log('Backend online.');
         checkDatabase();
-    }
+    } 
 };
 
 // Create an objectStore for this database

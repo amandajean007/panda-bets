@@ -29,17 +29,17 @@ const userSchema = new mongoose.Schema(
         type: Schema.Types.ObjectId,
         ref: 'Bet'
       }
-    ],
-    friends: [
-      {
-        type: mongoose.Schema.ObjectId, ref: 'User'
-      }
-    ],
-    followers: [
-      {
-        type: mongoose.Schema.ObjectId, ref: 'User'
-      }
     ]
+    // friends: [
+    //   {
+    //     type: mongoose.Schema.ObjectId, ref: 'User'
+    //   }
+    // ],
+    // followers: [
+    //   {
+    //     type: mongoose.Schema.ObjectId, ref: 'User'
+    //   }
+    // ]
   }
 );
 

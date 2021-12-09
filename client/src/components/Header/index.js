@@ -40,9 +40,9 @@ const Header = () => {
               <Link className="btn m-2" to="/bet">
                 Bets
               </Link>
-              <Link className="btn m-2" to="/mywallet">
+              {/* <Link className="btn m-2" to="/mywallet">
                 Wallet
-              </Link>
+              </Link> */}
               <Link className="btn m-2" to="/news">
                 Sports News
               </Link>

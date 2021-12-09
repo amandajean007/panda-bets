@@ -1260,12 +1260,12 @@ label form [type='radio'] {
   margin-right: -15px;
 }
 
-[class*='col-'] {
+/* col {
   position: relative;
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
-}
+} */
 
 .col-auto {
   flex-grow: 1;
