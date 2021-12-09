@@ -25,14 +25,11 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
+              <Link className="btn m-2" to="/">
+                Home
+              </Link>
               <Link className="btn m-2" to="/me">
                 {Auth.getProfile().data.firstName}'s profile
-              </Link>
-              <button className="btn btn m-2" onClick={logout}>
-                Logout
-              </button>
-              <Link className="btn m-2" to="/home">
-                Home
               </Link>
               <Link className="btn m-2" to="/myfriends">
                 Friends
@@ -55,15 +52,16 @@ const Header = () => {
               <Link className="btn m-2" to="/golfPanda">
                 Golf Panda
               </Link>
-
-
+              <button className="btn btn m-2" onClick={logout}>
+                Logout
+              </button>
             </>
           ) : (
             <>
               <Link className="btn  m-2" to="/login">
                 Login
               </Link>
-              <Link className="btn m-2" to="/signup">
+              <Link className="btn m-2 noselect" to="/signup">
                 Signup
               </Link>
             </>

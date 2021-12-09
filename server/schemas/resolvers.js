@@ -65,18 +65,25 @@ const resolvers = {
     // },
 
 // BETS
-    addBet: async (parent, { userId, bet }) => {
-      return await User.findOneAndUpdate(
-        { _id: userId },
-        {
-          $addToSet: { bets: bet },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
+  addBet: async (parent, { name, amount }) => {
+    const bet = await Bet.create({ name, amount });
+
+    return { Bet };
+  },
+
+
+    // addBet: async (parent, { userId, bet }) => {
+    //   return await User.findOneAndUpdate(
+    //     { _id: userId },
+    //     {
+    //       $addToSet: { bets: bet },
+    //     },
+    //     {
+    //       new: true,
+    //       runValidators: true,
+    //     }
+    //   );
+    // },
 
     removeBet: async (parent, { profileId, bet }) => {
       return Profile.findOneAndUpdate(

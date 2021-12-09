@@ -982,7 +982,7 @@ a:hover {
   display: inline-block;
   padding: 0.5rem 1.2rem;
   margin: 10;
-  text-decoration: none;
+  /* text-decoration: none; */
   font-size: 1rem;
   border-radius: 0.3rem;
   border: 1px solid transparent;
@@ -993,7 +993,7 @@ a:hover {
 }
 
 .btn:hover {
-  background-color: #cecece;
+  background-color: #e4e4e4;
 }
 
 .btn.btn-squared {

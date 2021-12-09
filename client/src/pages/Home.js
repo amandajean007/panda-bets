@@ -60,7 +60,9 @@ async function newsByTeam() {
 const Home = () => {
   return (
     <main>
-      <div className="card-body">
+
+
+      {/* <div className="card-body">
           <form onSubmit={queryTodaysGames}>
             <button
               className="btn btn-block btn-info"
@@ -107,7 +109,7 @@ const Home = () => {
       </div>
       <div>
         Hello
-      </div>
+      </div> */}
     </main>
   );
 };

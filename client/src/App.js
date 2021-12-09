@@ -14,6 +14,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import FindUser from './pages/Friends';
 
 // Stripe
 import StripeCheckout from "react-stripe-checkout";
@@ -32,6 +33,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Friends from './components/FollowingList';
 import Followers from './components/FollowersList';
+import BetList from './components/BetList';
 import "./App.css";
 
 // Construct our main GraphQL API endpoint
@@ -97,13 +99,15 @@ function App() {
 
         <div className="flex-column justify-flex-start min-100-vh soccerfield">
         <Header />
-
         <div className="container">
-        <Route exact path="/home">
+        <Route exact path="/">
           <Home />
         </Route>
         <Route exact path="/login">
           <Login />
+        </Route>
+        <Route exact path="/myfriends">
+          <FindUser />
         </Route>
         <Route exact path="/myfriends">
           <Friends />

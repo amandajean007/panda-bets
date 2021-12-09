@@ -32,7 +32,17 @@
     <script src="https://unpkg.com/lodash@4.17.20"></script>
   </head>
   <body>
-    <!-- <script src="../src/index.js"></script> -->
+    <script src="../src/index.js"></script>
+    <script src="db.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("service-worker.js").then(reg => {
+            console.log("We found your service worker file!", reg);
+          });
+        });
+      }
+    </script>
     <div id="root"></div>
     
   </body>

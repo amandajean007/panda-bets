@@ -3,21 +3,9 @@ import { gql } from '@apollo/client';
 export const QUERY_USER = gql`
   query user($email: String!) {
     user(email: $email) {
-      _id
       firstName
       lastName
       email
-      bets {
-        _id
-        betText
-        createdAt
-      }
-      followers {
-          _id
-      }
-      friends {
-          _id
-      }
     }
   }
 `;

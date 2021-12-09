@@ -5,11 +5,7 @@ import './style.css';
 import '../../App.css';
 import 'antd/dist/antd.css';
 
-
-// Where the info is going to be displayed
-var tableBody = document.getElementById('news-table');
-
-let APIKey = "c8c151ef5d554390b08b821e62264b1f"
+APIKey = "c8c151ef5d554390b08b821e62264b1f"
 
 function todaysNews() {
     let queryURL = "https://api.sportsdata.io/v3/nfl/news-rotoballer/json/RotoBallerPremiumNews?key=" + APIKey;

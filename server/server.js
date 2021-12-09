@@ -22,14 +22,6 @@ mongoose.connection.on('connected', () => {
 
 app.use(apiRoutes);
 
-
-
-
-// // socket.io
-// const http = require('http');
-// const server = http.createServer(app);
-
-
 // Stripe
 const STRIPE_KEY = process.env.STRIPE_KEY;
 const YOUR_DOMAIN = 'http://localhost:4242/';
@@ -52,10 +44,9 @@ app.post('/create-checkout-session', async (req, res) => {
 });
 
 
-
-
 // 
 const { typeDefs, resolvers } = require('./schemas');
+
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
@@ -86,7 +77,7 @@ if (process.env.NODE_ENV === 'production') {
 
 
 // routes
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
@@ -120,12 +111,6 @@ db.once('open', () => {
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
 });
-
-// // For use with socket.io
-// server.listen(3000, () => {
-//   console.log('listening on *:3000');
-// });
-// // ^^^
 
 // listen
 app.listen(4242, () => console.log('Stripe running on port http://localhost:4242/'));

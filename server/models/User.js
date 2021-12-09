@@ -30,16 +30,6 @@ const userSchema = new mongoose.Schema(
         ref: 'Bet'
       }
     ]
-    // friends: [
-    //   {
-    //     type: mongoose.Schema.ObjectId, ref: 'User'
-    //   }
-    // ],
-    // followers: [
-    //   {
-    //     type: mongoose.Schema.ObjectId, ref: 'User'
-    //   }
-    // ]
   }
 );
 

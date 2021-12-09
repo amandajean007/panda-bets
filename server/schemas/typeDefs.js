@@ -11,16 +11,6 @@ const typeDefs = gql`
     # followers: [User]
     # friends: [User]
   }
-  # type Team {
-  #   _id: ID!
-  #   name: String!
-  #   teamScore: Int!
-  # }
-  # type Player {
-  #   _id: ID!
-  #   name: String!
-  #   rating: Int!
-  # }
   type Bet {
     _id: ID!
     name: String!
@@ -39,10 +29,6 @@ const typeDefs = gql`
     bet(_id: ID!): Bet
     users: [User]
     user(_id: ID): User
-    # teams: [Team]
-    # team(_id: ID!): Team
-    # players: [Player]
-    # player(_id: ID!): Player
     # friends: [User]
     # friend(_id: ID!): User
   }
@@ -52,7 +38,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth,
     removeUser(email: String!): User,
     
-    addBet(_id: ID!, name: String!, amount: Int!): User,
+    addBet(name: String!, amount: Int!): User,
     removeBet(userid: ID!, name: String!): User,
 
     # addFollower(_id: ID!): User,
